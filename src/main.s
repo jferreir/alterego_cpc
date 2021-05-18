@@ -13,6 +13,9 @@ SPRITE_HEIGHT = 16
 SPRITE_SIZE_BYTES = (SPRITE_WIDTH / 2) * SPRITE_HEIGHT
 NUM_TILES_WIDTH = 28 ;; 4 pixels extra at each side for border
 NUM_TILES_HEIGHT = 20
+NUM_FONTS_8x16 = 28
+FONTS_8x8_SIZE_BYTES = 16
+FONTS_8x16_SIZE_BYTES = (FONTS_8x8_SIZE_BYTES * 2)
 
   global start
 
@@ -155,12 +158,12 @@ put_string_8x16:
   add hl,bc
   push hl
   call put_tile_8x8
-  ld bc,44*2
+  ld bc,SCREEN_WIDTH_BYTES
   ex de,hl
   add hl,bc
   ex de,hl
   pop hl
-  ld bc,28*16
+  ld bc,NUM_FONTS_8x16*FONTS_8x8_SIZE_BYTES   ;; go to lower half of 8x16 character
   add hl,bc
   call put_tile_8x8
   pop hl
@@ -298,7 +301,7 @@ put_char_scroll_0:
   add hl,hl
   add hl,hl
   add hl,hl
-  ld bc,fonts+28*2*16
+  ld bc,fonts+(NUM_FONTS_8x16*FONTS_8x16_SIZE_BYTES)
   add hl,bc
   jp put_tile_8x8
 .put_char_scroll_0:  
