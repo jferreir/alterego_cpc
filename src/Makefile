@@ -1,13 +1,15 @@
 PROJECT = alterego
-TOOLBOX = /mnt/ext/Homebrew/toolbox
+VASM_DIR = /mnt/ext/Homebrew/toolbox/vasm
+VLINK_DIR = /mnt/ext/Homebrew/toolbox/vlink
+IDISK_DIR = /mnt/ext/Homebrew/machines/cpc/toolbox/idsk/build
 
-VASMZ80 = $(TOOLBOX)/vasm/vasmz80_oldstyle
+VASMZ80 = $(VASM_DIR)/vasmz80_oldstyle
 VASMZ80FLAGS = -Fvobj -nosym
 
-VLINK = $(TOOLBOX)/vlink/vlink
+VLINK = $(VLINK_DIR)/vlink
 VLINKFLAGS = -b amsdos -M$(PROJECT).map
 
-IDSK = $(TOOLBOX)/cpc/idsk/build/iDSK
+IDSK = $(IDISK_DIR)/iDSK
 
 linker_script := linker.ld
 source_files := $(wildcard *.s)
